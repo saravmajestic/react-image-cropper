@@ -49,6 +49,7 @@ class ImageCropper extends React.Component{
 
         this.cropHandleType = null;
     }
+    /** Gets initial cropper position during mousedown */
     getCropInitPos(){
         this.cropInitPos.l = Math.max(this.cropperEl.offsetLeft, 1);
         this.cropInitPos.t = Math.max(this.cropperEl.offsetTop, 1);
@@ -64,12 +65,15 @@ class ImageCropper extends React.Component{
         this.mousePos = {l: e.clientX, t: e.clientY};
         
         this.getCropInitPos();
+        //TODO: find more generic solution
+        //Adjust the style coordinates to set the cropper in same position
+        //For topleft handle
         if(type === 'lt'){
             this.cropperEl.style.right = (this.props.imgWidth - this.cropInitPos.l - this.state.cropWidth) + 'px';
             this.cropperEl.style.left = 'auto';
             this.cropperEl.style.bottom = (this.props.imgHeight - this.cropInitPos.t - this.state.cropHeight) + 'px';
             this.cropperEl.style.top = 'auto';
-        }else if(type === 'rb'){
+        }else if(type === 'rb'){//For right bottom handle
             this.cropperEl.style.right = 'auto';
             this.cropperEl.style.left = this.cropInitPos.l + 'px';
             this.cropperEl.style.bottom = 'auto';
@@ -89,6 +93,9 @@ class ImageCropper extends React.Component{
             var containerDim = this.props;
             var cropperDeltaL = type === 'lt'? (this.state.cropWidth + deltaL) : (this.state.cropWidth - deltaL);
             //console.log(deltaL, deltaY, cropperDeltaL, this.cropInitPos.l, containerDim.w);
+            //Min width should be 25 px and max width as 800px
+            //Should not expand beyond the width of image
+            //Should not go left side of image 
             if((cropperDeltaL > 25 && cropperDeltaL <= 800)
                 && (type === 'lt'? (cropperDeltaL < containerDim.imgWidth): (cropperDeltaL + this.cropInitPos.l) < containerDim.imgWidth )
                 && (this.cropInitPos.l) > 0){
@@ -97,6 +104,7 @@ class ImageCropper extends React.Component{
             }
 
             var cropperDeltaY = type === 'lt'? (this.state.cropHeight + deltaY) : this.state.cropHeight - deltaY;
+            //Min width should be 25 px and max width as 100px
             if((cropperDeltaY > 25 && cropperDeltaY <= 100) 
                 && (cropperDeltaY + this.cropInitPos.t) < (containerDim.imgHeight)
                 && (this.cropInitPos.t) > 0){
