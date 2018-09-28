@@ -1,0 +1,113 @@
+#file-select{
+    outline: thin dotted;
+}
+#file-select input{
+    position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.image-previewer{
+    position: relative;
+    width: fit-content;
+    user-select: none;
+    margin-left: 25px; 
+}
+.image-previewer img{
+    display: block;
+}
+.image-cropper{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    height: 100px;
+    width: 800px;
+    max-width: 800px;
+    max-height: 100px;
+    background:rgba(0,0,0,0.4);
+    cursor: move;
+    z-index: 100;;
+}
+.logger{
+    position: absolute;
+    z-index: 1;
+}
+.ip-wrap > div{
+    position:relative;
+}
+.image-cropper > div{
+    width: 8px;
+    border: 1px solid #bbb;
+    background: transparent;
+    height: 8px;
+    position: absolute;
+    cursor: auto;
+}
+.image-cropper > div.dis{
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+.image-cropper #ic-left-top{
+    left: -3px;
+    top: -3px;
+}
+.image-cropper #ic-left-middle{
+    left: -3px;
+    top: 46%;
+}
+.image-cropper #ic-left-bottom{
+    left: -3px;
+    top: auto;
+    bottom: -3px;
+}
+.image-cropper #ic-center-top{
+    left: 46%;
+    top: -3px;
+}
+.image-cropper #ic-center-bottom{
+    top: auto;
+    bottom: -3px;
+    left: 46%;
+}
+.image-cropper #ic-right-top{
+    left: auto;
+    right: -3px;
+    top: -3px;
+}
+.image-cropper #ic-right-middle{
+    left: auto;
+    right: -3px;
+    top: 46%;
+}
+.image-cropper #ic-right-bottom{
+    left: auto;
+    right: -3px;
+    top: auto;
+    bottom: -3px;
+}
+.image-cropper-wrap button{
+    position: absolute;
+    right:0px;
+    bottom:0px;
+}
+
+.ip-wrap{
+    height: 500px;
+    width: 1000px;
+    display: flex;
+    border: 1px solid #f8f8f8;
+    align-items: center;
+    justify-content: center;
+}
+.ip-wrap img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#crop-dimensions{
+
+}
